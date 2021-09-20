@@ -15,8 +15,8 @@ jobs:
 
       - name: Run node script and commit files
         run: | 
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
   update_windows:
     needs: setup_git
     runs-on: ubuntu-latest
