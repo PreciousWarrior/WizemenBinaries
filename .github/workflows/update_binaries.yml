@@ -21,7 +21,7 @@ jobs:
           
       - run: npm install
       - run: node src/update-windows.js
-  update_osx:
+  update_mac:
     runs-on: ubuntu-latest
     steps:
       # Checks-out repository under $GITHUB_WORKSPACE
@@ -32,7 +32,14 @@ jobs:
     
         with:
           node-version: 16.8.0
-          
-      - run: npm install
-      - run: node src/update-mac.js
+      
+      - name: Run node script and commit files
+        run: | 
+           npm install
+           node src/update-mac.js
+           git config user.name github-actions
+           git config user.email github-actions@github.com
+           git add .
+           git commit -m "Update fun fact"
+           git push
     
