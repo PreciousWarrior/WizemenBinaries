@@ -1,5 +1,7 @@
 const fs = require('fs/promises');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
-const repoFolder = './';
-
-fs.readdir(repoFolder).then((files) => files.forEach((file) => console.log(file)));
+fs.writeFile('./nice.txt', 'nice!').then(async (_) => {
+	process.exit(0);
+});
