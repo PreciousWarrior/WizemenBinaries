@@ -21,7 +21,7 @@ jobs:
           
       - run: npm install
       - run: node src/update-windows.js
-  update_osx:
+  update_mac:
     runs-on: ubuntu-latest
     steps:
       # Checks-out repository under $GITHUB_WORKSPACE
