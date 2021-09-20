@@ -7,18 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup_git:
-    runs-on: ubuntu-latest
-    steps:
-      # Git
-      - uses: actions/checkout@v2
-
-      - name: Run node script and commit files
-        run: | 
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
   update_windows:
-    needs: setup_git
     runs-on: ubuntu-latest
     steps:
       # Git
@@ -31,9 +20,15 @@ jobs:
           node-version: 16.8.0
           
       - run: npm install
-      - run: node src/update-windows.js
+      - run: | 
+          npm install
+          node src/update-windows.js
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Update windows binaries"
+          git push
   update_mac:
-    needs: setup_git
     runs-on: ubuntu-latest
     steps:
       # Git
@@ -49,6 +44,8 @@ jobs:
         run: | 
            npm install
            node src/update-mac.js
+           git config user.name github-actions
+           git config user.email github-actions@github.com
            git add .
            git commit -m "Update mac binaries"
            git push
