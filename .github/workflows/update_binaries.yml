@@ -10,6 +10,9 @@ jobs:
   setup_git:
     runs-on: ubuntu-latest
     steps:
+      # Git
+      - uses: actions/checkout@v2
+
       - name: Run node script and commit files
         run: | 
           git config user.name github-actions
@@ -18,6 +21,9 @@ jobs:
     needs: setup_git
     runs-on: ubuntu-latest
     steps:
+      # Git
+      - uses: actions/checkout@v2
+
       # Node environment
       - uses: actions/setup-node@v2
     
@@ -30,6 +36,9 @@ jobs:
     needs: setup_git
     runs-on: ubuntu-latest
     steps:
+      # Git
+      - uses: actions/checkout@v2
+
       # Node environment
       - uses: actions/setup-node@v2
     
